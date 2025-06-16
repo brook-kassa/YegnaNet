@@ -25,6 +25,7 @@ We envision an Ethiopia where:
 - Communication through apps like WhatsApp and Viber are accessible without burning through expensive    prepaid minutes
 
 3. Our Approach
+
 YegnaNet will be:
 
 Crowdsourced: Users submit and verify WiFi locations and updates. Shop owners or library staff can flag outages or new availability. This turns every user into a potential contributor.
