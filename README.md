@@ -57,3 +57,5 @@ If this mission resonates with you whether you’re an Ethiopian, part of the di
 YegnaNet is open to testers, builders, designers, and dreamers.
 Let’s build something that helps us all stay connected together.
 
+![Add New WiFi Spot (1)](https://github.com/user-attachments/assets/2955cd13-b7e9-4371-a991-e91a188d9ec5)
+
