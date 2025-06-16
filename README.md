@@ -3,7 +3,6 @@ Our network: by us, for us.
 
 
 1. The Problem
-What is the key challenge you're addressing?
 
 In Ethiopia, and in many regions across Africa, access to reliable public WiFi remains both limited and undocuments. Navigating a city like Addis Ababa can often mean wandering from café to café, only to discover that promised internet connectivity doesn’t exist or is barely usable. Addis Ababa, a growing tech hub in East Africa, is filled with cafés, libraries, and shops that offer WiFi—but there is no centralized or reliable map of where these connections exist, how strong or secure they are, or whether they’re even active. 
 
@@ -11,7 +10,8 @@ For our vast and beautiful country-side communities, WiFi is even more sparse. B
 
 Africa’s internet user base is growing rapidly. Ethiopia is frequently cited as a future leader in African tech. A more connected Ethiopia empowers business, education, communication, and innovation. As billions more join the internet, tools like YegnaNet can help shape that transition in a way that centers equity, transparency, and usability.
 
-2. The Vision
+2. Our Vision
+   
 YegnaNet is your pocket companion for finding WiFi.
 
 We envision an Ethiopia where:
@@ -24,7 +24,8 @@ We envision an Ethiopia where:
 
 - Communication through apps like WhatsApp and Viber are accessible without burning through expensive    prepaid minutes
 
-3. The Approach
+3. Our Approach
+
 YegnaNet will be:
 
 Crowdsourced: Users submit and verify WiFi locations and updates. Shop owners or library staff can flag outages or new availability. This turns every user into a potential contributor.
@@ -33,7 +34,7 @@ Offline-first: Travelers can preload city data and still access the map without 
 
 Educational: Through optional in-app literacy modules, users can learn how to browse safely, avoid malicious actors, and understand the basics of internet hygiene—especially helpful for first-time internet users.
 
-4. The Values
+4. Our Values
 YegnaNet is grounded in:
 
 - Community: Built for and with Ethiopians and our abundant diaspora
@@ -55,4 +56,6 @@ If this mission resonates with you whether you’re an Ethiopian, part of the di
 
 YegnaNet is open to testers, builders, designers, and dreamers.
 Let’s build something that helps us all stay connected together.
+
+![Add New WiFi Spot (1)](https://github.com/user-attachments/assets/2955cd13-b7e9-4371-a991-e91a188d9ec5)
 
