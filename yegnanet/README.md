@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# YegnaNet
+Our network: by us, for us.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+1. The Problem
 
-In the project directory, you can run:
+In Ethiopia, and in many regions across Africa, access to reliable public WiFi remains both limited and undocuments. Navigating a city like Addis Ababa can often mean wandering from café to café, only to discover that promised internet connectivity doesn’t exist or is barely usable. Addis Ababa, a growing tech hub in East Africa, is filled with cafés, libraries, and shops that offer WiFi—but there is no centralized or reliable map of where these connections exist, how strong or secure they are, or whether they’re even active. 
 
-### `npm start`
+For our vast and beautiful country-side communities, WiFi is even more sparse. But even in areas where hotspots exist, word-of-mouth remains the main way people discover where to go online. I felt there's a clear opportunity to build something helpful, accessible, and community-driven. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Africa’s internet user base is growing rapidly. Ethiopia is frequently cited as a future leader in African tech. A more connected Ethiopia empowers business, education, communication, and innovation. As billions more join the internet, tools like YegnaNet can help shape that transition in a way that centers equity, transparency, and usability.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. Our Vision
+   
+YegnaNet is your pocket companion for finding WiFi.
 
-### `npm test`
+We envision an Ethiopia where:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Anyone can locate nearby, reliable, public internet access
 
-### `npm run build`
+- Diaspora can return home without feeling disconnected
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Students and remote workers know where they can study and work without interruption
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Communication through apps like WhatsApp and Viber are accessible without burning through expensive    prepaid minutes
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Our Approach
 
-### `npm run eject`
+YegnaNet will be:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Crowdsourced: Users submit and verify WiFi locations and updates. Shop owners or library staff can flag outages or new availability. This turns every user into a potential contributor.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Offline-first: Travelers can preload city data and still access the map without an active connection. This is essential in regions with patchy or inconsistent service.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Educational: Through optional in-app literacy modules, users can learn how to browse safely, avoid malicious actors, and understand the basics of internet hygiene—especially helpful for first-time internet users.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. Our Values
+YegnaNet is grounded in:
 
-## Learn More
+- Community: Built for and with Ethiopians and our abundant diaspora
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Transparency: Users verify each other’s submissions, and all updates are open
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Digital equity: Access to the internet should not depend on who you know or where you live
 
-### Code Splitting
+We are committed to:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Multilingual support (Amharic, English, and others as we grow)
 
-### Analyzing the Bundle Size
+- Exploring open access and open-source contributions in future phases
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Ultimately this project isn’t about monetizing connectivity, it’s about unlocking opportunity. This project is unique because it combines practical utility with educational empowerment. It hasn’t been done at scale in Ethiopia before, and we hope it sparks a wave of digital confidence and connectivity.
 
-### Making a Progressive Web App
+5. Get Involved + Contribute
+If this mission resonates with you whether you’re an Ethiopian, part of the diaspora, a student, developer, or someone who just believes in the power of the internet to uplift communities: we’d love your support!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+YegnaNet is open to testers, builders, designers, and dreamers.
+Let’s build something that helps us all stay connected together.
 
-### Advanced Configuration
+![Add New WiFi Spot (1)](https://github.com/user-attachments/assets/2955cd13-b7e9-4371-a991-e91a188d9ec5)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

@@ -1,0 +1,26 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": ["post"],
+      "route": "submit-scan"
+    },
+    {
+      "type": "cosmosDB",
+      "name": "doc",
+      "direction": "out",
+      "databaseName": "yegnanet",
+      "containerName": "scan_results",         
+      "createIfNotExists": true,
+      "connection": "CosmosDB"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+    }
+  ]
+}
