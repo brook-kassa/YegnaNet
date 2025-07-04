@@ -1,4 +1,3 @@
-// src/components/HotspotList.js
 import { useEffect, useState } from "react";
 
 function HotspotList() {

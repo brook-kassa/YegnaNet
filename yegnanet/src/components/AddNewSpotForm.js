@@ -1,7 +1,5 @@
 import { toast } from 'react-toastify';
 import { useEffect, useState } from "react";
-import React from "react";
-import MapComponent from "./MapComponent";
 
 function AddNewSpotForm() {
   const [currLocation, setCurrLocation] = useState("");
