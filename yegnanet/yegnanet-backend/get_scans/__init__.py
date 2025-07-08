@@ -27,7 +27,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         items_json,
         mimetype="application/json",
         headers={
-            "Access-Control-Allow-Origin": "https://yegna.net"
+            "Access-Control-Allow-Origin": "*"
         },
         status_code=200
     )

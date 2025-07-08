@@ -40,21 +40,44 @@ def translate_text_am_to_en(text):
         logging.error(f"Response content: {response.text}")
         return ""
 
-
 def main(req: func.HttpRequest, doc: func.Out[func.Document]) -> func.HttpResponse:
+    # CORS preflight check here:
+    if req.method == "OPTIONS":
+        return func.HttpResponse(
+            "",
+            status_code=204,
+            headers={
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type",
+            }
+        )
+
     try:
         data = req.get_json()
     except ValueError:
-        return func.HttpResponse("Invalid JSON format.", status_code=400)
+        return func.HttpResponse(
+            "Invalid JSON format.",
+            status_code=400,
+            headers={"Access-Control-Allow-Origin": "*"}
+        )
 
     for field in REQUIRED_FIELDS:
         if field not in data:
-            return func.HttpResponse(f"Missing required field: '{field}'", status_code=400)
+            return func.HttpResponse(
+                f"Missing required field: '{field}'",
+                status_code=400,
+                headers={"Access-Control-Allow-Origin": "*"}
+            )
 
     location = data["location"]
     for field in REQUIRED_LOCATION_FIELDS:
         if field not in location:
-            return func.HttpResponse(f"Missing 'location.{field}'", status_code=400)
+            return func.HttpResponse(
+                f"Missing 'location.{field}'",
+                status_code=400,
+                headers={"Access-Control-Allow-Origin": "*"}
+            )
 
     data["id"] = str(uuid.uuid4())
     data["received_at"] = datetime.utcnow().isoformat()
@@ -87,7 +110,15 @@ def main(req: func.HttpRequest, doc: func.Out[func.Document]) -> func.HttpRespon
 
     try:
         doc.set(func.Document.from_json(json.dumps(cleaned_data)))
-        return func.HttpResponse("Scan data saved.", status_code=200)
+        return func.HttpResponse(
+            "Scan data saved.",
+            status_code=200,
+            headers={"Access-Control-Allow-Origin": "*"}
+        )
     except Exception as e:
         logging.error(f"Error saving scan data: {e}")
-        return func.HttpResponse("Server error", status_code=500)
+        return func.HttpResponse(
+            "Server error",
+            status_code=500,
+            headers={"Access-Control-Allow-Origin": "*"}
+        )

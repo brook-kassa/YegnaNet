@@ -1,1 +1,18 @@
-node_modules
+# Azure Functions local settings
+local.settings.json
+
+# Node modules
+node_modules/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment files
+.env
+
+# VSCode settings
+.vscode/
+
+# Log files
+*.log

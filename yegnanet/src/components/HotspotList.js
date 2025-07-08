@@ -4,7 +4,7 @@ function HotspotList() {
   const [hotspots, setHotspots] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:7071/api/getHotspots")
+    fetch("http://localhost:7071/api/get_hotspots")
       .then((res) => res.json())
       .then((data) => setHotspots(data))
       .catch((err) => console.error("Error loading hotspot list:", err));
@@ -24,6 +24,8 @@ function HotspotList() {
       ))}
     </div>
   );
+
+  
 }
 
 export default HotspotList;
