@@ -1,38 +1,115 @@
-.App {
-  text-align: center;
+
+body {
+  margin: 0;
+  font-family: 'Futura Bold Condensed Original', sans-serif;
+  background-color: #3E2723;
+  color: #FFD700;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app-container {
+  padding: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main-content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+  }
+}
+
+.map-section {
+  flex: 2;
+}
+
+.sidebar {
+  flex: 1;
+}
+
+.button-container {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 1rem 0;
 }
 
-.App-link {
-  color: #61dafb;
+.add-spot-button {
+  background: linear-gradient(45deg, #FFD700, #FFC107);
+  border: none;
+  color: #3E2723;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.2rem;
+  font-family: 'Futura Bold Condensed Original', sans-serif;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 60%;
+  max-width: 300px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.add-spot-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.map-container {
+  height: 100vh;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #3E2723; /* dark brown drawer */
+  color: #FFD700;
+  font-family: 'Futura Bold Condensed Original', sans-serif;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+  border-top-left-radius: 12px;
+  padding: 1rem;
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.drawer button[type="submit"] {
+  background-color: #5D4037;
+  color: #FFD700;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-family: 'Futura Bold Condensed Original', sans-serif;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.drawer button[type="submit"]:hover {
+  background-color: #4E342E;
+  transform: translateY(-1px);
+}
+
+.drawer h2,
+.drawer label,
+.drawer p {
+  color: #FFD700;
+  font-family: 'Futura Bold Condensed Original', sans-serif;
+}
+
+.drawer .form-container {
+  border: 4px solid #FFD700; 
+  border-radius: 12px;
+  padding: 1rem;
+  background: #3E2723; 
 }

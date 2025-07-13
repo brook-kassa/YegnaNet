@@ -4,7 +4,6 @@ import os
 import json
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    # 🟢 Handle preflight CORS request first
     if req.method == "OPTIONS":
         return func.HttpResponse(
             "",

@@ -1,9 +1,7 @@
 import azure.functions as func
 from azure.cosmos import CosmosClient
-from datetime import datetime
 import os
 import json
-import uuid
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     if req.method == "OPTIONS":
@@ -21,12 +19,15 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         data = req.get_json()
     except ValueError:
         return func.HttpResponse("Invalid JSON", status_code=400)
-    
-    if not all(k in data for k in ("location", "name", "notes")):
+
+    if not all(k in data for k in ("id", "vote")):
         return func.HttpResponse("Missing required fields", status_code=400)
 
-    data["id"] = str(uuid.uuid4())
-    data["createdAt"] = datetime.utcnow().isoformat()
+    hotspot_id = data["id"]
+    vote_type = data["vote"]
+
+    if vote_type not in ("up", "down"):
+        return func.HttpResponse("Invalid vote type", status_code=400)
 
     endpoint = os.environ["COSMOS_ENDPOINT"]
     key = os.environ["COSMOS_KEY"]
@@ -36,13 +37,22 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     client = CosmosClient(endpoint, key)
     db = client.get_database_client(database_name)
     container = db.get_container_client(container_name)
-    data["upvotes"] = 0
-    data["downvotes"] = 0
 
-    container.create_item(body=data)
+    try:
+        hotspot = container.read_item(item=hotspot_id, partition_key=hotspot_id)
+    except Exception as e:
+        return func.HttpResponse("Hotspot not found", status_code=404)
+
+    if vote_type == "up":
+        hotspot["upvotes"] = hotspot.get("upvotes", 0) + 1
+    elif vote_type == "down":
+        hotspot["downvotes"] = hotspot.get("downvotes", 0) + 1
+
+
+    container.replace_item(item=hotspot_id, body=hotspot)
 
     return func.HttpResponse(
-        json.dumps({"status": "success", "id": data["id"]}),
+        json.dumps({"status": "success"}),
         mimetype="application/json",
         headers={
             "Access-Control-Allow-Origin": "*",

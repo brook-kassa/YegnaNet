@@ -1,5 +1,4 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { useEffect, useState } from "react";
 import 'leaflet/dist/leaflet.css';
 import L from "leaflet";
 
@@ -9,35 +8,34 @@ const markerIcon = new L.Icon({
   iconAnchor: [12, 41],
 });
 
-function MapComponent() {
-  const [hotspots, setHotspots] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:7071/api/get_scans")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Fetched scans:", data);
-        setHotspots(data);
-      })
-      .catch((err) => console.error("Error fetching scans:", err));
-  }, []);
-
+function MapComponent({ hotspots }) {
   return (
-    <MapContainer center={[9.03, 38.74]} zoom={13} style={{ height: "500px", width: "100%" }}>
+    <MapContainer 
+    center = {[9.03, 38.74]}
+    zoom={13}
+    className="map-container"
+    >
       <TileLayer
         attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {hotspots.map((spot) => {
-        const { lat, lon } = spot.location || {};
-        if (lat === undefined || lon === undefined) return null;
+        let lat = undefined;
+        let lon = undefined;
+
+        if (spot.location && typeof spot.location === "string") {
+          const parts = spot.location.split(",").map((p) => p.trim());
+          lat = parseFloat(parts[0]);
+          lon = parseFloat(parts[1]);
+        }
+
+        if (lat === undefined || lon === undefined || isNaN(lat) || isNaN(lon)) return null;
 
         return (
           <Marker key={spot.id} position={[lat, lon]} icon={markerIcon}>
             <Popup>
-              <strong>{spot.name || spot.source}</strong><br />
-              Ping: {spot.ping_result ? spot.ping_result.avg_ms + " ms" : "N/A"}<br />
-              {spot.notes_en || spot.notes_am || "No notes"}
+              <strong>{spot.name}</strong><br />
+              {spot.notes || "No notes"}
             </Popup>
           </Marker>
         );

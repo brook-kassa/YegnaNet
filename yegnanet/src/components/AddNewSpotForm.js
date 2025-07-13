@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import { useEffect, useState } from "react";
 
-function AddNewSpotForm() {
+function AddNewSpotForm({ onNewHotspot }) {
   const [currLocation, setCurrLocation] = useState("");
   const [spotName, setSpotName] = useState("");
   const [userNotes, setUserNotes] = useState("");
@@ -42,6 +42,10 @@ function handleSubmit(e) {
       toast.success("Hotspot added successfully!");
       setSpotName("");
       setUserNotes("");
+
+      if (onNewHotspot) {
+        onNewHotspot();
+      }
     })
     .catch((err) => {
       console.error("Error:", err);
