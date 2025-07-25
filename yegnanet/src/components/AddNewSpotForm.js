@@ -2,9 +2,11 @@ import { toast } from 'react-toastify';
 import { useEffect, useState } from "react";
 
 function AddNewSpotForm({ onNewHotspot }) {
+  const [selectedTags, setSelectedTags] = useState([]);
   const [currLocation, setCurrLocation] = useState("");
   const [spotName, setSpotName] = useState("");
   const [userNotes, setUserNotes] = useState("");
+  const [trusted, setTrusted] = useState(false);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -22,6 +24,8 @@ function handleSubmit(e) {
     location: currLocation,
     name: spotName,
     notes: userNotes,
+    tags: selectedTags,
+    trusted: trusted
   };
 
   fetch("http://localhost:7071/api/addHotspot", {
@@ -85,6 +89,33 @@ function handleSubmit(e) {
             style={{ width: "100%", marginBottom: "10px" }}
           />
         </label>
+        <label>
+          Tags
+          <select
+            multiple
+            value={selectedTags}
+            onChange={(e) =>
+              setSelectedTags(Array.from(e.target.selectedOptions, (opt) => opt.value))
+            }
+            style={{ width: "100%", marginBottom: "10px" }}
+          >
+            <option value="cafe">Cafe</option>
+            <option value="library">Library</option>
+            <option value="gov">Government</option>
+            <option value="school">School</option>
+            <option value="restaurant">Restaurant</option>
+            <option value="shop">Shop</option>
+          </select>
+        </label>
+        <label>
+        <input
+            type="checkbox"
+            checked={trusted}
+            onChange={(e) => setTrusted(e.target.checked)}
+            style={{ marginRight: "10px" }}
+          /> 
+          Mark as Trusted (admin use)
+        </label>  
         <button type="submit" style={{ width: "100%" }}>Submit</button>
       </form>
     </div>

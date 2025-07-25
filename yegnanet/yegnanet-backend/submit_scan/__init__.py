@@ -6,9 +6,9 @@ import os
 import requests
 from datetime import datetime
 
-REQUIRED_FIELDS = ["timestamp", "location", "ping_result", "source"]
+REQUIRED_FIELDS = ["location", "name"] 
 REQUIRED_LOCATION_FIELDS = ["lat", "lon"]
-OPTIONAL_FIELDS = ["device_type", "notes", "user_language", "ssid"]
+OPTIONAL_FIELDS = ["notes", "tags", "ssid", "user_language", "device_type", "trusted"]
 
 def translate_text_am_to_en(text):
     endpoint = os.environ['TRANSLATOR_ENDPOINT']
@@ -41,7 +41,6 @@ def translate_text_am_to_en(text):
         return ""
 
 def main(req: func.HttpRequest, doc: func.Out[func.Document]) -> func.HttpResponse:
-    # CORS preflight check here:
     if req.method == "OPTIONS":
         return func.HttpResponse(
             "",
@@ -54,7 +53,7 @@ def main(req: func.HttpRequest, doc: func.Out[func.Document]) -> func.HttpRespon
         )
 
     try:
-        data = req.get_json()
+        req_body = req.get_json()
     except ValueError:
         return func.HttpResponse(
             "Invalid JSON format.",
@@ -62,40 +61,54 @@ def main(req: func.HttpRequest, doc: func.Out[func.Document]) -> func.HttpRespon
             headers={"Access-Control-Allow-Origin": "*"}
         )
 
+    # Validate required fields
     for field in REQUIRED_FIELDS:
-        if field not in data:
+        if field not in req_body:
             return func.HttpResponse(
                 f"Missing required field: '{field}'",
                 status_code=400,
                 headers={"Access-Control-Allow-Origin": "*"}
             )
 
-    location = data["location"]
-    for field in REQUIRED_LOCATION_FIELDS:
-        if field not in location:
+    location = req_body["location"]
+    if isinstance(location, str):
+        try:
+            lat, lon = map(float, location.split(","))
+            location = {"lat": lat, "lon": lon}
+        except:
             return func.HttpResponse(
-                f"Missing 'location.{field}'",
+                "Invalid location format. Expected 'lat,lon' string.",
                 status_code=400,
                 headers={"Access-Control-Allow-Origin": "*"}
             )
 
-    data["id"] = str(uuid.uuid4())
-    data["received_at"] = datetime.utcnow().isoformat()
+    for field in REQUIRED_LOCATION_FIELDS:
+        if field not in location:
+            return func.HttpResponse(
+                f"Missing location.{field}",
+                status_code=400,
+                headers={"Access-Control-Allow-Origin": "*"}
+            )
 
-    x_forwarded_for = req.headers.get("X-Forwarded-For", "")
-    sender_ip = x_forwarded_for.split(",")[0].strip() if x_forwarded_for else "unknown"
-    data["ip_address"] = sender_ip
+    # Assemble document
+    new_id = str(uuid.uuid4())
+    received_at = datetime.utcnow().isoformat()
+    ip = req.headers.get("X-Forwarded-For", "unknown").split(",")[0].strip()
 
-    cleaned_data = {key: data[key] for key in REQUIRED_FIELDS if key in data}
-    cleaned_data["location"] = data["location"]
+    cleaned_data = {
+        "id": new_id,
+        "name": req_body.get("name"),
+        "location": location,
+        "received_at": received_at,
+        "ip_address": ip
+    }
 
     for key in OPTIONAL_FIELDS:
-        if key in data:
-            cleaned_data[key] = data[key]
+        if key in req_body:
+            cleaned_data[key] = req_body[key]
 
-    # Auto-translate notes if present
-    if "notes" in data and data["notes"].strip():
-        am_note = data["notes"]
+    if "notes" in cleaned_data and cleaned_data["notes"].strip():
+        am_note = cleaned_data["notes"]
         try:
             en_note = translate_text_am_to_en(am_note)
         except Exception as e:
@@ -104,14 +117,10 @@ def main(req: func.HttpRequest, doc: func.Out[func.Document]) -> func.HttpRespon
         cleaned_data["notes_am"] = am_note
         cleaned_data["notes_en"] = en_note
 
-    cleaned_data["id"] = data["id"]
-    cleaned_data["received_at"] = data["received_at"]
-    cleaned_data["ip_address"] = data["ip_address"]
-
     try:
         doc.set(func.Document.from_json(json.dumps(cleaned_data)))
         return func.HttpResponse(
-            "Scan data saved.",
+            json.dumps({"id": new_id}),
             status_code=200,
             headers={"Access-Control-Allow-Origin": "*"}
         )
