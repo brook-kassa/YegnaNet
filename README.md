@@ -4,7 +4,7 @@ Our network: by us, for us.
 
 1. The Problem
 
-In Ethiopia, and in many regions across Africa, access to reliable public WiFi remains both limited and undocuments. Navigating a city like Addis Ababa can often mean wandering from café to café, only to discover that promised internet connectivity doesn’t exist or is barely usable. Addis Ababa, a growing tech hub in East Africa, is filled with cafés, libraries, and shops that offer WiFi—but there is no centralized or reliable map of where these connections exist, how strong or secure they are, or whether they’re even active. 
+In Ethiopia, and in many regions across Africa, access to reliable public WiFi remains both limited and undocumented. Navigating a city like Addis Ababa can often mean wandering from café to café, only to discover that promised internet connectivity doesn’t exist or is barely usable. Addis Ababa, a growing tech hub in East Africa, is filled with cafés, libraries, and shops that offer WiFi—but there is no centralized or reliable map of where these connections exist, how strong or secure they are, or whether they’re even active. 
 
 For our vast and beautiful country-side communities, WiFi is even more sparse. But even in areas where hotspots exist, word-of-mouth remains the main way people discover where to go online. I felt there's a clear opportunity to build something helpful, accessible, and community-driven. 
 
